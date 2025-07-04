@@ -4,8 +4,9 @@ import os
 from dotenv import load_dotenv
 
 load_dotenv()
-SUPABASE_URL = os.getenv("SUPABASE_URL")
-SUPABASE_KEY = os.getenv("SUPABASE_KEY")
+SUPABASE_URL = st.secrets["SUPABASE_URL"]
+SUPABASE_KEY = st.secrets["SUPABASE_KEY"]
+
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 
 def sign_up(email, password):
@@ -47,3 +48,5 @@ def auth_screen():
             st.session_state.user_email = user.user.email
             st.success(f"Welcome back, {email}")
             st.rerun()
+
+
